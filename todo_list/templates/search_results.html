@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Search Results for "{{ query }}"</h2>
+    <div class="list-group">
+        {% if tasks %}
+            {% for task in tasks %}
+                <div class="list-group-item list-group-item-action">
+                    <a href="{% url 'edit' task.id %}">{{ task.item }}</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                No tasks found for your search query.
+            </div>
+        {% endif %}
+    </div>
+    <a href="{% url 'home' %}" class="btn btn-primary mt-3">Back to Home</a>
+</div>
+{% endblock %}
